@@ -3,6 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 const environment = process.env.NODE_ENV || 'local'
 const env = require(`./env/${environment}.ts`)
 
+console.log({env})
+
 // `DEPLOY_ENV` が `GH_PAGES` の場合のみ `router.base = '/<repository-name>/'` を追加する
 const routerBase =
   process.env.DEPLOY_ENV === 'GH_PAGES'

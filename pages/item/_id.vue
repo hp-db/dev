@@ -188,7 +188,7 @@ export default {
     } else {
       const id = app.context.route.params.id
       const { data } = await axios.get(
-        `http://localhost:3000/data/curation_old.json`
+        process.env.BASE_URL + `/data/curation_old.json`
       )
       const selections = data.selections
       for(let i = 0; i < selections.length; i++){
