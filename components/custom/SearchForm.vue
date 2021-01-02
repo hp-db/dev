@@ -3,7 +3,7 @@
     <v-card class="my-5" flat outlined>
       <v-card-text>
         <v-row>
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="vol"
               :items="vols"
@@ -12,7 +12,7 @@
             ></v-select>
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="hieraticNo"
               :label="$t('Hieratic No')"
@@ -22,7 +22,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="hieroglyphNo"
               :label="$t('Hieroglyph No')"
@@ -31,7 +31,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="category"
               :items="categories"
@@ -40,7 +40,7 @@
             ></v-select>
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="compound"
               :items="compounds"
@@ -49,7 +49,7 @@
             ></v-select>
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="categoryClass"
               :label="$t('Class')"
@@ -62,7 +62,7 @@
         </v-row>
 
         <v-row>
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="phonetic"
               :label="$t('Phone/Word')"
@@ -71,7 +71,7 @@
             <!-- class="phone" -->
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="page"
               :label="$t('Page')"
@@ -80,7 +80,7 @@
             <!-- class="phone" -->
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="order"
               :label="$t('Order')"
@@ -89,14 +89,14 @@
             <!-- class="phone" -->
           </v-col>
 
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="note"
               :label="$t('Note')"
               @keyup.enter="search"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="4">
             <v-btn class="ma-2" color="primary" @click="search">{{
               $t('search')
             }}</v-btn>

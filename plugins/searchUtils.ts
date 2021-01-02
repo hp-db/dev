@@ -46,7 +46,7 @@ export class SearchUtils {
     return result
   }
 
-  createQuery(routeQuery: any, config: any): any {
+  createQuery(routeQuery: any, config: any, max = true): any {
     const fcs = Object.keys(config.facetOptions) // JSON.parse(process.env.FACETS_LABELS)
 
     // const qs = Object.keys(config.termLabels)
@@ -104,7 +104,7 @@ export class SearchUtils {
       aggs[field] = {
         terms: {
           field: field + '.keyword',
-          size: option.size || FC_SIZE,
+          size: max ? (option.size || FC_SIZE) : -1,
           order
         },
       }
@@ -925,6 +925,7 @@ export class SearchUtils {
 
     for (const label in queryAggs) {
       const obj = queryAggs[label].terms
+
       let size = obj.size ? Number(obj.size) : -1
       const field = obj.field.replace('.keyword', '')
       const map = index[field]

@@ -85,38 +85,15 @@ export default class search extends Vue {
     { value: 'stats', text: 'graph' },
   ]
 
-  facetOptions: any = {
-    Vol : {
-      label: this.$t('Vol'),
-      open: true,
-    },
-    Category: {
-      label: this.$t('Category'),
-      open: true,
-    },
-    Compound: {
-      label: this.$t('Compound'),
-      open: true,
-    },
-    Class : {
-      label: this.$t('Class'),
-      open: true,
-      orderKey: "_term",
-      orderValue: "asc"
-    },
-    "Hieratic No" : {
-      label: this.$t('Hieratic No'),
-      open: true
-    },
-    "Hieroglyph No" : {
-      label: this.$t('Hieroglyph No'),
-      open: true
-    },
-    "Phone/Word Mod" : {
-      label: this.$t('Phone/Word'),
-      open: true
+  get facetOptions(): any {
+    const facetOptions: any = process.env.facetOptions
+    for(let key in facetOptions){
+      const obj  = facetOptions[key]
+      obj.label = this.$t(obj.label)
     }
+    return facetOptions
   }
+  
 
   loadingFlag: boolean = true
 

@@ -3,6 +3,39 @@ import colors from 'vuetify/es5/util/colors'
 const environment = process.env.NODE_ENV || 'local'
 const env = require(`./env/${environment}.ts`)
 
+env.facetOptions = {
+    Vol : {
+      label: "Vol",//this.$t('Vol'),
+      open: true,
+    },
+    Category: {
+      label: "Category",//this.$t('Category'),
+      open: true,
+    },
+    Compound: {
+      label: "Compound", //this.$t('Compound'),
+      open: true,
+    },
+    Class : {
+      label: "Class", //this.$t('Class'),
+      open: true,
+      orderKey: "_term",
+      orderValue: "asc"
+    },
+    "Hieratic No" : {
+      label: "Hieratic No",//this.$t('Hieratic No'),
+      open: true
+    },
+    "Hieroglyph No" : {
+      label: "Hieroglyph No", //this.$t('Hieroglyph No'),
+      open: true
+    },
+    "Phone/Word Mod" : {
+      label: "Phone/Word", //this.$t('Phone/Word'),
+      open: true
+    }
+  }
+
 console.log({env})
 
 // `DEPLOY_ENV` が `GH_PAGES` の場合のみ `router.base = '/<repository-name>/'` を追加する
