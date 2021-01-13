@@ -4,7 +4,7 @@
       <v-parallax :src="baseUrl + '/img/ogp/home.jpg'" height="300">
         <v-layout column align-center justify-center class="white--text">
           <h1 class="white--text mb-2 display-1 text-center">
-             <b>{{title}}</b>
+            <b>{{ title }}</b>
           </h1>
           <v-btn
             large
@@ -179,7 +179,7 @@ export default {
   data() {
     return {
       baseUrl: process.env.BASE_URL,
-      title : process.env.siteName
+      title: process.env.siteName,
     }
   },
   head() {

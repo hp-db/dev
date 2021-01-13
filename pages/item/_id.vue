@@ -19,7 +19,7 @@
     <v-container>
       <p class="text-center">
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               class="mx-1"
               icon
@@ -33,7 +33,7 @@
         </v-tooltip>
 
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               class="mx-1"
               icon
@@ -47,7 +47,7 @@
         </v-tooltip>
 
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               icon
               class="mx-1"
@@ -63,7 +63,7 @@
         </v-tooltip>
 
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               class="mx-1"
               icon
@@ -77,7 +77,7 @@
         </v-tooltip>
 
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               class="mx-1"
               icon
@@ -91,7 +91,7 @@
         </v-tooltip>
 
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn
               class="mx-1"
               icon
@@ -124,13 +124,15 @@
         </dd>
       </dl>
 
-      <dl v-for="(obj, key) in metadata" :key="key" class="row">
-        <template
+      <template v-for="(obj, key) in metadata">
+        <dl
           v-if="
             !obj.label.includes('sort') &&
             !obj.label.includes('Mod') &&
             obj.value != ''
           "
+          :key="key"
+          class="row"
         >
           <dt class="col-sm-3 text-muted">
             <b>{{ $t(obj.label) }}</b>
@@ -141,8 +143,8 @@
           >
             {{ Array.isArray(obj.value) ? obj.value.join(', ') : obj.value }}
           </dd>
-        </template>
-      </dl>
+        </dl>
+      </template>
 
       <dl class="row">
         <dt class="col-sm-3 text-muted">
@@ -182,7 +184,7 @@
 import axios from 'axios'
 
 export default {
-  async asyncData({ payload, context, app }) {
+  async asyncData({ payload, app }) {
     if (payload) {
       return payload
     } else {
@@ -191,16 +193,16 @@ export default {
         process.env.BASE_URL + `/data/curation_old.json`
       )
       const selections = data.selections
-      for(let i = 0; i < selections.length; i++){
+      for (let i = 0; i < selections.length; i++) {
         const selection = selections[i]
-        const manifest = selection.within["@id"]
+        const manifest = selection.within['@id']
         const members = selection.members
-        for(let j = 0; j < members.length; j++){
+        for (let j = 0; j < members.length; j++) {
           const member = members[j]
           const metadata = member.metadata
-          for(let k = 0; k < metadata.length; k++){
+          for (let k = 0; k < metadata.length; k++) {
             const m = metadata[k]
-            if(m.label == "m_sort" && m.value == id){
+            if (m.label === 'm_sort' && m.value === id) {
               member.manifest = manifest
               return member
             }
@@ -214,6 +216,54 @@ export default {
     return {
       baseUrl: process.env.BASE_URL,
       prefix: 'https://w3id.org/hpdb',
+    }
+  },
+
+  head() {
+    const title = this.title
+    return {
+      title,
+      meta: [
+        /*
+        {
+          hid: 'description',
+          name: 'description',
+          content: description,
+        },
+        */
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: title,
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'article',
+        },
+        /*
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: description,
+        },
+        */
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: this.url,
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: this.thumbnail,
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+      ],
     }
   },
 
@@ -286,54 +336,6 @@ export default {
         xywh
       return url
     },
-  },
-
-  head() {
-    const title = this.title
-    return {
-      title,
-      meta: [
-        /*
-        {
-          hid: 'description',
-          name: 'description',
-          content: description,
-        },
-        */
-        {
-          hid: 'og:title',
-          property: 'og:title',
-          content: title,
-        },
-        {
-          hid: 'og:type',
-          property: 'og:type',
-          content: 'article',
-        },
-        /*
-        {
-          hid: 'og:description',
-          property: 'og:description',
-          content: description,
-        },
-        */
-        {
-          hid: 'og:url',
-          property: 'og:url',
-          content: this.url,
-        },
-        {
-          hid: 'og:image',
-          property: 'og:image',
-          content: this.thumbnail,
-        },
-        {
-          hid: 'twitter:card',
-          name: 'twitter:card',
-          content: 'summary_large_image',
-        },
-      ],
-    }
   },
 }
 </script>

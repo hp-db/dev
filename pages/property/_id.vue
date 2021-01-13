@@ -14,11 +14,13 @@
         :items-per-page="-1"
         class="mt-5"
       >
-        <template v-slot:item.path="{ item }">
+        <!-- eslint-disable-next-line vue/valid-v-slot -->
+        <template #item.path="{ item }">
           <code>{{ getUri(item.path) }}</code>
         </template>
 
-        <template v-slot:item.min="{ item }">
+        <!-- eslint-disable-next-line vue/valid-v-slot -->
+        <template #item.min="{ item }">
           <template v-if="item.min === 1">
             <b>{{ $t('required') }}</b>
           </template>
@@ -27,7 +29,8 @@
           </template>
         </template>
 
-        <template v-slot:item.max="{ item }">
+        <!-- eslint-disable-next-line vue/valid-v-slot -->
+        <template #item.max="{ item }">
           <template v-if="item.max === 1">
             {{ $t('non_repeatable') }}
           </template>
@@ -36,18 +39,20 @@
           </template>
         </template>
 
-        <template v-slot:item.datatype="{ item }">
+        <!-- eslint-disable-next-line vue/valid-v-slot -->
+        <template #item.datatype="{ item }">
           <code>{{ getUri(item.datatype) }}</code>
         </template>
 
-        <template v-slot:item.example="{ item }">
+        <!-- eslint-disable-next-line vue/valid-v-slot -->
+        <template #item.example="{ item }">
           {{ getUri(item.example) }}
         </template>
       </v-data-table>
 
       <p class="text-center mt-5">
         <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn icon class="mx-1" target="_blank" :href="uri" v-on="on"
               ><img :src="baseUrl + '/img/icons/rdf-logo.svg'" width="45px"
             /></v-btn>
@@ -172,22 +177,6 @@ export default {
       ],
     }
   },
-
-  methods: {
-    getUri(data) {
-      data = '' + data
-      const prefixes = this.prefixes
-      for (const key in prefixes) {
-        data = data.replace(prefixes[key], key + ':')
-      }
-      const size = 60
-      if (data.length > size) {
-        data = data.substring(0, size) + '...'
-      }
-      return data
-    },
-  },
-
   head() {
     const title = this.id
     return {
@@ -234,6 +223,21 @@ export default {
         },
       ],
     }
+  },
+
+  methods: {
+    getUri(data) {
+      data = '' + data
+      const prefixes = this.prefixes
+      for (const key in prefixes) {
+        data = data.replace(prefixes[key], key + ':')
+      }
+      const size = 60
+      if (data.length > size) {
+        data = data.substring(0, size) + '...'
+      }
+      return data
+    },
   },
 }
 </script>

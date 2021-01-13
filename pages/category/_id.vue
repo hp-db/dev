@@ -22,7 +22,7 @@
         :to="
           localePath({
             name: 'category-id',
-            params: {'id' : index},
+            params: { id: index },
           })
         "
       >
@@ -46,14 +46,14 @@
           :cols="6"
           :sm="2"
           class="my-2"
-          style="word-break: break-word;"
+          style="word-break: break-word"
         >
           <nuxt-link
             class="mr-2"
             :to="
               localePath({
                 name: 'search',
-                query: getParams('fc-'+label, obj.key),
+                query: getParams('fc-' + label, obj.key),
               })
             "
           >
@@ -81,8 +81,8 @@ export default class PageCategory extends Vue {
 
   get facetOptions(): any {
     const facetOptions: any = process.env.facetOptions
-    for(let key in facetOptions){
-      const obj  = facetOptions[key]
+    for (const key in facetOptions) {
+      const obj = facetOptions[key]
       obj.label = this.$t(obj.label)
     }
     return facetOptions
@@ -108,23 +108,27 @@ export default class PageCategory extends Vue {
       store.commit('setFacetOptions', this.facetOptions)
     }
 
-    let label: any = this.$route.params.id
-    this.label = label //this.facetOptions[label].label
+    const label: any = this.$route.params.id
+    this.label = label // this.facetOptions[label].label
 
     // 検索
-    const esQuery = this.$searchUtils.createQuery(routeQuery, store.state, false)
+    const esQuery = this.$searchUtils.createQuery(
+      routeQuery,
+      store.state,
+      false
+    )
     const result = this.$searchUtils.search(
       store.state.index,
       store.state.data,
       esQuery
     )
-    
+
     const results = result.aggregations[label].buckets
     this.results = results
   }
 
-  get title(){
-    if(this.facetOptions[this.label]){
+  get title() {
+    if (this.facetOptions[this.label]) {
       return this.facetOptions[this.label].label
     } else {
       return this.label
@@ -144,7 +148,7 @@ export default class PageCategory extends Vue {
     }
   }
 
-  getParams(label: string, value: string){
+  getParams(label: string, value: string) {
     const params: any = {}
     params[label] = value
     return params

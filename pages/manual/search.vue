@@ -90,7 +90,8 @@
           href="http://www.catchpenny.org/codage/#trans"
           >Manuel de Codage（MdC）</a
         >方式によるアルファベット（半角、英、大文字、小文字）を入力して下さい．
-        例えば、<span class="phone">Ax</span>を検索する際には、Axと入力することになります．
+        例えば、<span class="phone">Ax</span
+        >を検索する際には、Axと入力することになります．
         なお、本データベースでは文字配列のための補助記号（:）(*）や形態素境界記号（.）(=)は使用しておりません．
       </p>
 

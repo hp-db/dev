@@ -87,13 +87,12 @@ export default class search extends Vue {
 
   get facetOptions(): any {
     const facetOptions: any = process.env.facetOptions
-    for(let key in facetOptions){
-      const obj  = facetOptions[key]
+    for (const key in facetOptions) {
+      const obj = facetOptions[key]
       obj.label = this.$t(obj.label)
     }
     return facetOptions
   }
-  
 
   loadingFlag: boolean = true
 
@@ -133,8 +132,8 @@ export default class search extends Vue {
     // ------ ファセット ---------
 
     if (Object.keys(store.state.facetOptions)) {
-      //store.commit('setFacetLabels', this.facetLabels)
-      //store.commit('setFacetFlags', this.facetFlags)
+      // store.commit('setFacetLabels', this.facetLabels)
+      // store.commit('setFacetFlags', this.facetFlags)
       store.commit('setFacetOptions', this.facetOptions)
     }
 

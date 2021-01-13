@@ -9,7 +9,7 @@
       </v-btn>
 
       <v-dialog v-model="dialog" scrollable max-width="600px">
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn class="ma-2" v-on="on">{{ $t('list') }}</v-btn>
         </template>
         <v-card>
@@ -176,7 +176,7 @@
 
             <div class="text-right">
               <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn
                     icon
                     class="mt-2"
@@ -192,7 +192,7 @@
               </v-tooltip>
 
               <v-tooltip bottom>
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                   <v-btn
                     class="mt-2"
                     icon
@@ -318,7 +318,7 @@ export default class ListSearchResult extends Vue {
     return obj
   }
 
-  getUrl(obj :any) {
+  getUrl(obj: any) {
     const params = obj._relatedLink[0].split('?')[1].split('&')
     const page = params[1].split('/canvas/p')[1]
     const xywh = params[2].split('=')[1]

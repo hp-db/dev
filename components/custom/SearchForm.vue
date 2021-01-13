@@ -57,8 +57,6 @@
             ></v-text-field>
             <!-- class="phone" -->
           </v-col>
-
-          
         </v-row>
 
         <v-row>
@@ -211,7 +209,6 @@ export default class SearchForm extends Vue {
   category: any = []
   compound: any = []
   categoryClass: any = ''
-
 
   get advanced() {
     return this.$store.state.advanced
