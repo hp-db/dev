@@ -81015,7 +81015,7 @@
                     "thumbnail": "https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_063.tif/914,3479,3917,480/,200/0/default.jpg"
                 },
                 {
-                    "@id": "https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63#xywh=913,3464,3957,499",
+                    "@id": "https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63#xywh=938,3944,3870,466",
                     "@type": "sc:Canvas",
                     "label": "[1465]",
                     "metadata": [
@@ -81064,9 +81064,9 @@
                             ]
                         }
                     ],
-                    "related": "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/8aaa203c-1c5a-4fef-973b-4fb174d60d37/manifest.json&canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63&xywh=913,3464,3957,499&xywh_highlight=border",
+                    "related": "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/8aaa203c-1c5a-4fef-973b-4fb174d60d37/manifest.json&canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63&xywh=938,3944,3870,466&xywh_highlight=border",
                     "seeAlso": "https://w3id.org/hpdb/api/items/1150",
-                    "thumbnail": "https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_063.tif/913,3464,3957,499/,200/0/default.jpg"
+                    "thumbnail": "https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_063.tif/938,3944,3870,466/,200/0/default.jpg"
                 },
                 {
                     "@id": "https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63#xywh=901,4840,3883,483",
