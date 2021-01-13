@@ -77476,9 +77476,9 @@
             "3"
         ],
         "_id": "1150",
-        "_image": "https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_063.tif/913,3464,3957,499/,200/0/default.jpg",
+        "_image": "https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_063.tif/938,3944,3870,466/,200/0/default.jpg",
         "_label": "433(S33)",
-        "_related": "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/8aaa203c-1c5a-4fef-973b-4fb174d60d37/manifest.json&canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63&xywh=913,3464,3957,499&xywh_highlight=border",
+        "_related": "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/8aaa203c-1c5a-4fef-973b-4fb174d60d37/manifest.json&canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p63&xywh=938,3944,3870,466&xywh_highlight=border",
         "_url": "https://w3id.org/hpdb/item/1150",
         "h_sort": [
             "18-0-033"
