@@ -15,19 +15,21 @@
     </v-sheet>
 
     <v-container>
-      <v-btn
-        v-for="(obj, index) in facetOptions"
-        :key="index"
-        class="my-1 mr-4"
-        :to="
-          localePath({
-            name: 'category-id',
-            params: { id: index },
-          })
-        "
-      >
-        {{ obj.label.startsWith('_') ? $t(obj.label) : obj.label }}
-      </v-btn>
+      <template v-for="(obj, index) in facetOptions">
+        <v-btn
+          v-if="index !== 'Phone/Word Mod'"
+          :key="index"
+          class="my-1 mr-4"
+          :to="
+            localePath({
+              name: 'category-id',
+              params: { id: index },
+            })
+          "
+        >
+          {{ obj.label.startsWith('_') ? $t(obj.label) : obj.label }}
+        </v-btn>
+      </template>
 
       <v-sheet color="grey lighten-3 py-1 px-3 my-5">
         <v-row dense align="center">

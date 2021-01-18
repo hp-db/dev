@@ -124,13 +124,9 @@
         </dd>
       </dl>
 
-      <template v-for="(obj, key) in metadata">
+      <template v-for="(obj, key) in fields">
         <dl
-          v-if="
-            !obj.label.includes('sort') &&
-            !obj.label.includes('Mod') &&
-            obj.value != ''
-          "
+          v-if="metadataObj[obj.label] && metadataObj[obj.label].length > 0"
           :key="key"
           class="row"
         >
@@ -141,7 +137,22 @@
             class="col-sm-9"
             :class="obj.label === 'Phone/Word' ? 'phone' : ''"
           >
-            {{ Array.isArray(obj.value) ? obj.value.join(', ') : obj.value }}
+            <template v-if="obj.text">
+              <span v-for="(v, key2) in metadataObj[obj.label]" :key="key2">
+                {{ v }}
+              </span>
+            </template>
+            <template v-else>
+              <nuxt-link
+                v-for="(v, key2) in metadataObj[obj.label]"
+                :key="key2"
+                :to="
+                  localePath({ name: 'search', query: getQuery(obj.label, v) })
+                "
+              >
+                {{ v }}
+              </nuxt-link>
+            </template>
           </dd>
         </dl>
       </template>
@@ -216,6 +227,21 @@ export default {
     return {
       baseUrl: process.env.BASE_URL,
       prefix: 'https://w3id.org/hpdb',
+      fields: [
+        { label: 'Item Type' },
+        { label: 'Sub Type' },
+        { label: 'Unit' },
+        { label: 'Vol' },
+        { label: 'Page' },
+        { label: 'Order' },
+        { label: 'Item Label' },
+        { label: 'Hieratic No' },
+        { label: 'Numeral' },
+        { label: 'Category Class' },
+        { label: 'Hieroglyph No' },
+        { label: 'Phone/Word' },
+        { label: 'Note', text: true },
+      ],
     }
   },
 
@@ -277,18 +303,27 @@ export default {
       return this.$route.params.id
     },
     title() {
-      const metadata = this.metadata
-      const metadataObj = {}
-      for (let i = 0; i < metadata.length; i++) {
-        const obj = metadata[i]
-        metadataObj[obj.label] = obj.value
-      }
+      const metadataObj = this.metadataObj
       return (
-        metadataObj['Möller No Mod'][0] +
+        metadataObj['Hieratic No Mod'][0] +
         '(' +
         metadataObj['Hieroglyph No Mod'][0] +
         ')'
       )
+    },
+    metadataObj() {
+      const metadata = this.metadata
+      const metadataObj = {}
+      for (let i = 0; i < metadata.length; i++) {
+        const m = metadata[i]
+        const values = Array.isArray(m.value)
+          ? m.value
+          : m.value === ''
+          ? []
+          : [m.value]
+        metadataObj[m.label] = values
+      }
+      return metadataObj
     },
   },
 
@@ -335,6 +370,11 @@ export default {
         '&xywh=' +
         xywh
       return url
+    },
+    getQuery(label, value) {
+      const query = {}
+      query['fc-' + label] = value
+      return query
     },
   },
 }

@@ -4,26 +4,28 @@ const environment = process.env.NODE_ENV || 'local'
 const env = require(`./env/${environment}.ts`)
 
 env.facetOptions = {
-  Vol: {
-    label: 'Vol', // this.$t('Vol'),
+  'Item Type': {
+    label: 'Item Type', // this.$t('Class'),
     open: true,
   },
-  Category: {
-    label: 'Category', // this.$t('Category'),
+  'Sub Type': {
+    label: 'Sub Type', // this.$t('Class'),
     open: true,
   },
-  Compound: {
-    label: 'Compound', // this.$t('Compound'),
+  Unit: {
+    label: 'Unit', // this.$t('Compound'),
     open: true,
   },
-  Class: {
-    label: 'Class', // this.$t('Class'),
+  'Item Label': {
+    label: 'Item Label', // this.$t('Hieratic No'),
     open: true,
-    orderKey: '_term',
-    orderValue: 'asc',
   },
   'Hieratic No': {
     label: 'Hieratic No', // this.$t('Hieratic No'),
+    open: true,
+  },
+  'Category Class': {
+    label: 'Category Class', // this.$t('Category'),
     open: true,
   },
   'Hieroglyph No': {
@@ -34,6 +36,22 @@ env.facetOptions = {
     label: 'Phone/Word', // this.$t('Phone/Word'),
     open: true,
   },
+  Numeral: {
+    label: 'Numeral', // this.$t('Category'),
+    open: true,
+  },
+  Vol: {
+    label: 'Vol', // this.$t('Vol'),
+    open: true,
+  },
+  /*
+  'Item Type': {
+    label: 'Item Type', // this.$t('Class'),
+    open: true,
+    orderKey: '_term',
+    orderValue: 'asc',
+  },
+  */
 }
 
 console.log({ env })

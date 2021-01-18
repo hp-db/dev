@@ -5,20 +5,53 @@
         <v-row>
           <v-col cols="12" sm="4" lg="2">
             <v-select
-              v-model="vol"
-              :items="vols"
-              :label="$t('Vol')"
+              v-model="fields.itemType.value"
+              :items="fields.itemType.arr"
+              :label="$t(fields.itemType.label)"
+              multiple
+            ></v-select>
+          </v-col>
+
+          <v-col cols="12" sm="4" lg="2">
+            <v-select
+              v-model="fields.subType.value"
+              :items="fields.subType.arr"
+              :label="$t(fields.subType.label)"
+              multiple
+            ></v-select>
+          </v-col>
+
+          <v-col cols="12" sm="4" lg="2">
+            <v-select
+              v-model="fields.unit.value"
+              :items="fields.unit.arr"
+              :label="$t(fields.unit.label)"
               multiple
             ></v-select>
           </v-col>
 
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
+              v-model="fields.item.value"
+              :label="$t(fields.item.label)"
+              @keyup.enter="search"
+            ></v-text-field>
+          </v-col>
+
+          <v-col cols="12" sm="4" lg="2">
+            <v-text-field
               v-model="hieraticNo"
               :label="$t('Hieratic No')"
-              autocomplete="on"
-              list="list_mno"
               @keyup.enter="search"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" sm="4" lg="2">
+            <v-text-field
+              v-model="fields.category.value"
+              :label="$t(fields.category.label)"
             ></v-text-field>
           </v-col>
 
@@ -26,40 +59,10 @@
             <v-text-field
               v-model="hieroglyphNo"
               :label="$t('Hieroglyph No')"
-              list="list_hno"
               @keyup.enter="search"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" sm="4" lg="2">
-            <v-select
-              v-model="category"
-              :items="categories"
-              :label="$t('Category')"
-              multiple
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="4" lg="2">
-            <v-select
-              v-model="compound"
-              :items="compounds"
-              :label="$t('Compound')"
-              multiple
-            ></v-select>
-          </v-col>
-
-          <v-col cols="12" sm="4" lg="2">
-            <v-text-field
-              v-model="categoryClass"
-              :label="$t('Class')"
-              @keyup.enter="search"
-            ></v-text-field>
-            <!-- class="phone" -->
-          </v-col>
-        </v-row>
-
-        <v-row>
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="phonetic"
@@ -71,8 +74,26 @@
 
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
-              v-model="page"
-              :label="$t('Page')"
+              v-model="fields.numeral.value"
+              :label="$t(fields.numeral.label)"
+            ></v-text-field>
+          </v-col>
+
+          <v-col cols="12" sm="4" lg="2">
+            <v-select
+              v-model="fields.vol.value"
+              :items="fields.vol.arr"
+              :label="$t(fields.vol.label)"
+              multiple
+            ></v-select>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12" sm="4" lg="2">
+            <v-text-field
+              v-model="fields.page.value"
+              :label="$t(fields.page.label)"
               @keyup.enter="search"
             ></v-text-field>
             <!-- class="phone" -->
@@ -80,8 +101,8 @@
 
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
-              v-model="order"
-              :label="$t('Order')"
+              v-model="fields.order.value"
+              :label="$t(fields.order.label)"
               @keyup.enter="search"
             ></v-text-field>
             <!-- class="phone" -->
@@ -111,10 +132,49 @@ import { Vue, Component, Watch } from 'nuxt-property-decorator'
 
 @Component({})
 export default class SearchForm extends Vue {
-  vols: string[] = ['1', '2', '3']
+  fields: any = {
+    itemType: {
+      label: 'Item Type',
+      arr: ['Main', 'Ligature', 'Number'],
+      value: [],
+    },
+    subType: {
+      label: 'Sub Type',
+      arr: ['Numeral', 'Date', 'Fraction', 'Length', 'Area', 'Volume'],
+      value: [],
+    },
+    unit: {
+      label: 'Unit',
+      arr: ['Single', 'Continuous'],
+      value: [],
+    },
 
-  categories: string[] = ['基本字']
-  compounds: string[] = ['単体字', '複合字']
+    item: {
+      label: 'Item Label',
+      value: [],
+    },
+    category: {
+      label: 'Category Class',
+      value: '',
+    },
+    numeral: {
+      label: 'Numeral',
+      value: '',
+    },
+    vol: {
+      label: 'Vol',
+      arr: ['1', '2', '3'],
+      value: [],
+    },
+    page: {
+      label: 'Page',
+      value: '',
+    },
+    order: {
+      label: 'Order',
+      value: '',
+    },
+  }
 
   mounted() {
     this.init()
@@ -128,12 +188,32 @@ export default class SearchForm extends Vue {
   init() {
     const advanced = this.$route.query
 
+    const fields = this.fields
+    for (const field in fields) {
+      const obj = fields[field]
+      const label = obj.label
+      if (advanced['fc-' + label]) {
+        const values = advanced['fc-' + label]
+        if (obj.arr) {
+          obj.value = Array.isArray(values) ? values : [values]
+        } else {
+          obj.value = values
+        }
+      } else if (obj.arr) {
+        obj.value = []
+      } else {
+        obj.value = ''
+      }
+    }
+
+    /*
     if (advanced['fc-Vol']) {
       const vols = advanced['fc-Vol']
       this.vol = Array.isArray(vols) ? vols : [vols]
     } else {
       this.vol = []
     }
+    */
 
     if (advanced['fc-Hieratic No Mod']) {
       this.hieraticNo = advanced['fc-Hieratic No Mod']
@@ -159,6 +239,7 @@ export default class SearchForm extends Vue {
       this.note = ''
     }
 
+    /*
     if (advanced['fc-Page']) {
       this.page = advanced['fc-Page']
     } else {
@@ -190,9 +271,15 @@ export default class SearchForm extends Vue {
     } else {
       this.categoryClass = ''
     }
+    */
   }
 
-  vol: any = []
+  // vol: any = []
+
+  // itemType: any = []
+  // subType: any = []
+
+  // unit: any = []
 
   hieraticNo: any = ''
 
@@ -202,13 +289,13 @@ export default class SearchForm extends Vue {
 
   note: any = ''
 
-  page: any = ''
+  // page: any = ''
 
-  order: any = ''
+  // order: any = ''
 
-  category: any = []
-  compound: any = []
-  categoryClass: any = ''
+  // category: any = []
+  // compound: any = []
+  // categoryClass: any = ''
 
   get advanced() {
     return this.$store.state.advanced
@@ -219,11 +306,13 @@ export default class SearchForm extends Vue {
 
     // --------
 
+    /*
     const vol = this.vol
 
     if (vol.length !== 0) {
       query['fc-Vol'] = vol
     }
+    */
 
     // --------
 
@@ -267,6 +356,7 @@ export default class SearchForm extends Vue {
 
     // --------
 
+    /*
     const page = this.page
 
     if (page !== '') {
@@ -303,6 +393,20 @@ export default class SearchForm extends Vue {
 
     if (categoryClass !== '') {
       query['fc-Class'] = categoryClass
+    }
+    */
+
+    // --------
+
+    const fields = this.fields
+
+    for (const field in fields) {
+      const obj = fields[field]
+      const values = obj.value
+
+      if (values.length !== 0) {
+        query['fc-' + obj.label] = values
+      }
     }
 
     // --------

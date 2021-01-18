@@ -110,6 +110,58 @@
             <br />
 
             <span>
+              <b>{{ $t('Item Type') }}</b>
+              &nbsp;
+              <template v-for="(value, index2) in obj._source['Item Type']">
+                <nuxt-link
+                  :key="index2"
+                  :to="
+                    localePath({
+                      name: 'search',
+                      query: {
+                        'fc-Item Type': value,
+                      },
+                    })
+                  "
+                  >{{ value }}</nuxt-link
+                >
+                <span
+                  v-show="index2 != obj._source['Item Type'].length - 1"
+                  :key="'it_' + index2"
+                  >&nbsp;+&nbsp;</span
+                >
+              </template>
+            </span>
+
+            &nbsp;
+
+            <span>
+              <b>{{ $t('Unit') }}</b>
+              &nbsp;
+              <template v-for="(value, index2) in obj._source['Unit']">
+                <nuxt-link
+                  :key="index2"
+                  :to="
+                    localePath({
+                      name: 'search',
+                      query: {
+                        'fc-Unit': value,
+                      },
+                    })
+                  "
+                  >{{ value }}</nuxt-link
+                >
+                <span
+                  v-show="index2 != obj._source['Unit'].length - 1"
+                  :key="'unit_' + index2"
+                  >&nbsp;+&nbsp;</span
+                >
+              </template>
+            </span>
+
+            <br />
+
+            <span>
               <b>{{ $t('Phone/Word') }}</b
               >&nbsp;
               <template v-for="(value, index2) in obj._source['Phone/Word']">
@@ -171,7 +223,11 @@
                 })
               "
             >
-              <v-img :src="obj._source._thumbnail[0]" class="grey lighten-2" />
+              <v-img
+                :src="obj._source._thumbnail[0]"
+                max-height="120px"
+                contain
+              />
             </nuxt-link>
 
             <div class="text-right">

@@ -38,8 +38,6 @@ for selection in selections:
             label = m["label"]
             value = m["value"]
 
-            label = label.replace("Möller", "Hieratic")
-
             if label not in metadataObj:
                 metadataObj[label] = []
 
@@ -50,6 +48,8 @@ for selection in selections:
                 metadataObj[label].append(value) 
 
         id = metadataObj["m_sort"][0]
+
+        print(metadataObj)
 
         metadataObj["_label"] = metadataObj["Hieratic No"][0]+"("+metadataObj["Hieroglyph No"][0]+")"
 
