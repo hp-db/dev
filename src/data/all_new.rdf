@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:ns1="https://w3id.org/hpdb/api/properties/"
+   xmlns:ns2="http://schema.org/"
+   xmlns:ns3="http://purl.org/dc/terms/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/term/categoryClass/A">
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/Category"/>
+    <ns1:notes>56 signs in Gardiner (1957:242–247), with A59 "man threatening with stick" inserted after A25 "man striking with left hand hanging behind back", and two variants A14* "blood interpreted as ax" of A14 "man with blood streaming from his head" and A17* "child sitting with arms hanging down" of A17 "child sitting with hand to mouth".</ns1:notes>
+    <rdfs:label>A</rdfs:label>
+    <ns2:description>Man and his occupations</ns2:description>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/items/301001">
+    <ns1:unit>Single</ns1:unit>
+    <rdfs:label>1(A26)</rdfs:label>
+    <ns2:url rdf:resource="http://w3id.org/hpdb/item/301001"/>
+    <ns1:itemType>Main</ns1:itemType>
+    <ns3:identifer>301001</ns3:identifer>
+    <ns1:hieraticNo rdf:resource="https://w3id.org/hpdb/api/term/hieraticNo/1"/>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/Item"/>
+    <ns2:image rdf:resource="https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/3/3_023.tif/893,2105,3921,501/,200/0/default.jpg"/>
+    <ns1:hieroglyphNo rdf:resource="https://w3id.org/hpdb/api/term/hieroglyphNo/A26"/>
+    <ns1:page rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:page>
+    <ns1:order rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:order>
+    <ns2:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
+    <ns1:vol rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</ns1:vol>
+    <ns2:relatedLink rdf:resource="http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/8aaa203c-1c5a-4fef-973b-4fb174d60d37/manifest.json&amp;canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/8aaa203c-1c5a-4fef-973b-4fb174d60d37/canvas/p23&amp;xywh=893,2105,3921,501&amp;xywh_highlight=border"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/items/201001">
+    <ns1:page rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:page>
+    <ns2:url rdf:resource="http://w3id.org/hpdb/item/201001"/>
+    <ns2:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
+    <ns3:identifer>201001</ns3:identifer>
+    <rdfs:label>1(A26)</rdfs:label>
+    <ns2:image rdf:resource="https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/2/2_023.tif/983,2131,3913,476/,200/0/default.jpg"/>
+    <ns1:unit>Single</ns1:unit>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/Item"/>
+    <ns1:order rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:order>
+    <ns2:relatedLink rdf:resource="http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/56653a59-0d55-4d1a-a7e3-2242e02859a1/manifest.json&amp;canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/56653a59-0d55-4d1a-a7e3-2242e02859a1/canvas/p23&amp;xywh=983,2131,3913,476&amp;xywh_highlight=border"/>
+    <ns1:hieroglyphNo rdf:resource="https://w3id.org/hpdb/api/term/hieroglyphNo/A26"/>
+    <ns1:itemType>Main</ns1:itemType>
+    <ns1:vol rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</ns1:vol>
+    <ns1:hieraticNo rdf:resource="https://w3id.org/hpdb/api/term/hieraticNo/1"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/items/101001">
+    <ns1:unit>Single</ns1:unit>
+    <ns3:identifer>101001</ns3:identifer>
+    <rdfs:label>2(A30)</rdfs:label>
+    <ns1:itemType>Main</ns1:itemType>
+    <ns1:order rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:order>
+    <ns1:page rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:page>
+    <ns2:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
+    <ns2:image rdf:resource="https://iiif.dl.itc.u-tokyo.ac.jp/iiif/asia/hp/1/1_031.tif/947,1675,3871,477/,200/0/default.jpg"/>
+    <ns2:relatedLink rdf:resource="http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=https://moeller.jinsha.tsukuba.ac.jp/data/manifest/4a1fbed0-f2a2-4cf5-8a0a-fa310c62ca50/manifest.json&amp;canvas=https://iiif.dl.itc.u-tokyo.ac.jp/repo/iiif/4a1fbed0-f2a2-4cf5-8a0a-fa310c62ca50/canvas/p31&amp;xywh=947,1675,3871,477&amp;xywh_highlight=border"/>
+    <ns1:vol rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</ns1:vol>
+    <ns1:hieraticNo rdf:resource="https://w3id.org/hpdb/api/term/hieraticNo/2"/>
+    <ns1:hieroglyphNo rdf:resource="https://w3id.org/hpdb/api/term/hieroglyphNo/A30"/>
+    <ns2:url rdf:resource="http://w3id.org/hpdb/item/101001"/>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/Item"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/term/hieroglyphNo/A30">
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/HieroglyphNo"/>
+    <rdfs:label>A30</rdfs:label>
+    <ns1:categoryClass rdf:resource="https://w3id.org/hpdb/api/term/categoryClass/A"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/term/hieroglyphNo/A26">
+    <ns1:categoryClass rdf:resource="https://w3id.org/hpdb/api/term/categoryClass/A"/>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/HieroglyphNo"/>
+    <rdfs:label>A26</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/term/hieraticNo/1">
+    <ns1:phonetic>nis</ns1:phonetic>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/HieraticNo"/>
+    <rdfs:label>1</rdfs:label>
+    <ns1:phonetic>aA</ns1:phonetic>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/hpdb/api/term/hieraticNo/2">
+    <rdfs:label>2</rdfs:label>
+    <ns1:phonetic>dwA</ns1:phonetic>
+    <rdf:type rdf:resource="https://w3id.org/hpdb/api/classes/HieraticNo"/>
+  </rdf:Description>
+</rdf:RDF>
