@@ -3,7 +3,7 @@
     <div>
       <v-navigation-drawer v-model="drawer" app :temporary="true">
         <v-list>
-          <v-list-item link :to="localePath({ name: 'index' })">
+          <v-list-item link :to="localePath({ name: 'index' })" exact>
             <v-list-item-action>
               <v-icon>mdi-home</v-icon>
             </v-list-item-action>
@@ -21,7 +21,10 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item link :to="localePath({ name: 'category-id', params: {id : 'Vol'} })">
+          <v-list-item
+            link
+            :to="localePath({ name: 'category-id', params: { id: 'Vol' } })"
+          >
             <v-list-item-action>
               <v-icon>mdi-view-list</v-icon>
             </v-list-item-action>
@@ -142,13 +145,13 @@
         <v-spacer></v-spacer>
 
         <v-menu offset-y>
-          <template v-slot:activator="{ on }">
+          <template #activator="{ on }">
             <v-btn depressed btn v-on="on">
               <v-icon class="mr-2">mdi-translate</v-icon>
               <template v-if="$vuetify.breakpoint.name != 'xs'">
-                {{ $i18n.locale == 'ja' ? '日本語' : 'English' }}</template
-              >
-              <v-icon class="ml-2">mdi-menu-down</v-icon>
+                {{ $i18n.locale == 'ja' ? '日本語' : 'English' }}
+                <v-icon class="ml-2">mdi-menu-down</v-icon>
+              </template>
             </v-btn>
           </template>
 
@@ -225,3 +228,8 @@ export default class search extends Vue {
   */
 }
 </script>
+<style>
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+</style>

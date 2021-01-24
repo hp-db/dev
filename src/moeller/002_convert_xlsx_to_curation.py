@@ -16,6 +16,7 @@ import re
 canvas_image_map = {}
 curation_data = {}
 
+EXCEL_PATH = "data/Moller_All-Data_20210123.xlsx"
 
 curation_uri = "https://moeller.jinsha.tsukuba.ac.jp/data/curation.json"
 
@@ -136,7 +137,7 @@ for file in files:
 
     get_curation_data_new(data)
 
-path = "data/Moller_All-Ddata_20210118.xlsx"
+path = EXCEL_PATH
 
 manifest_members = {}
 
@@ -152,8 +153,8 @@ for j in range(1, r_count):
 
     sort = str(df.iloc[j,1])
 
-    m_sort = str(df.iloc[j,1])
-    h_sort = str(df.iloc[j,5])
+    m_sort = str(df.iloc[j,2]).zfill(8)
+    h_sort = str(df.iloc[j,4]).zfill(8)
 
     vol = str(df.iloc[j,12]) # *
     m_no = str(df.iloc[j,16]).replace("=", "+").split("+") # 要検討
@@ -195,7 +196,7 @@ for j in range(1, r_count):
     ###
 
     categories = df.iloc[j,18].split(",")
-    numeral = df.iloc[j,17]
+    numeral = [] if pd.isnull(df.iloc[j,17]) else str(df.iloc[j,17]).split(",")
 
     item_label = str(df.iloc[j,15]).split("+") # 要検討
 
@@ -333,7 +334,7 @@ for manifest in manifest_members:
             }
           ]
 
-        if not pd.isnull(obj["numeral"]):
+        if len(obj["numeral"]) > 0:
           metadata.append({
             "label": "Numeral",
             "value": obj["numeral"]
@@ -360,7 +361,7 @@ for manifest in manifest_members:
         member = {
           "@id": obj["canvas_id"],
           "@type": "sc:Canvas",
-          "label": "["+str(key)+"]",
+          "label": str(key),
           "metadata": metadata
         }
 

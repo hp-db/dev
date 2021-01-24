@@ -1,5 +1,6 @@
 <template>
   <v-card flat>
+    <!-- 
     <v-tooltip bottom>
       <template #activator="{ on }">
         <v-btn icon class="ma-2" @click="copyLink()" v-on="on"
@@ -8,6 +9,7 @@
       </template>
       <span>{{ 'Copy this link.' }}</span>
     </v-tooltip>
+    -->
     <v-tooltip bottom>
       <template #activator="{ on }">
         <v-btn icon class="ma-2" target="_blank" :href="twitterUrl" v-on="on"

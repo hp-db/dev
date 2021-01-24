@@ -1,14 +1,16 @@
 <template>
   <div>
-    <v-container class="py-5">
-      <iframe
-        :src="getIframeUrl()"
-        width="100%"
-        height="200"
-        allowfullscreen
-        frameborder="0"
-      ></iframe>
-    </v-container>
+    <v-sheet color="grey lighten-3">
+      <v-container>
+        <iframe
+          :src="getIframeUrl()"
+          width="100%"
+          height="200"
+          allowfullscreen
+          frameborder="0"
+        ></iframe>
+      </v-container>
+    </v-sheet>
     <!--
     <v-sheet class="py-2" color="grey lighten-3">
       <v-container>
@@ -16,8 +18,8 @@
       </v-container>
     </v-sheet>
     -->
-    <v-container>
-      <p class="text-center">
+    <v-container class="mt-5 mb-10">
+      <p class="text-center py-5">
         <v-tooltip bottom>
           <template #activator="{ on }">
             <v-btn
@@ -62,106 +64,83 @@
           <span>{{ 'RDF' }}</span>
         </v-tooltip>
 
-        <v-tooltip bottom>
-          <template #activator="{ on }">
-            <v-btn
-              class="mx-1"
-              icon
-              target="_blank"
-              :href="'https://twitter.com/intent/tweet?url=' + url"
-              v-on="on"
-              ><v-icon>mdi-twitter</v-icon></v-btn
-            >
-          </template>
-          <span>{{ 'Twitter' }}</span>
-        </v-tooltip>
-
-        <v-tooltip bottom>
-          <template #activator="{ on }">
-            <v-btn
-              class="mx-1"
-              icon
-              target="_blank"
-              :href="'https://www.facebook.com/sharer/sharer.php?u=' + url"
-              v-on="on"
-              ><v-icon>mdi-facebook</v-icon></v-btn
-            >
-          </template>
-          <span>{{ 'Facebook' }}</span>
-        </v-tooltip>
-
-        <v-tooltip bottom>
-          <template #activator="{ on }">
-            <v-btn
-              class="mx-1"
-              icon
-              target="_blank"
-              :href="'http://getpocket.com/edit?url=' + url"
-              v-on="on"
-              ><img
-                style="font-size: 30px"
-                src="https://cultural.jp/img/icons/pocket.svg"
-            /></v-btn>
-          </template>
-          <span>{{ 'Pocket' }}</span>
-        </v-tooltip>
+        <ResultOption
+          :item="{
+            label: id,
+            url: url,
+          }"
+        />
       </p>
-      <dl class="row">
-        <dt class="col-sm-3 text-muted"><b>URL</b></dt>
-        <dd class="col-sm-9">
-          <a :href="prefix + '/item/' + $route.params.id">{{
-            prefix + '/item/' + $route.params.id
-          }}</a>
-        </dd>
-      </dl>
 
-      <dl class="row">
-        <dt class="col-sm-3 text-muted">
-          <b>{{ $t('label') }}</b>
-        </dt>
-        <dd class="col-sm-9">
-          {{ title }}
-        </dd>
-      </dl>
+      <v-simple-table class="mt-10">
+        <template #default>
+          <tbody>
+            <tr>
+              <td width="30%">URL</td>
+              <td style="overflow-wrap: break-word" class="py-5">
+                <a :href="prefix + '/item/' + $route.params.id">{{
+                  prefix + '/item/' + $route.params.id
+                }}</a>
+              </td>
+            </tr>
 
-      <template v-for="(obj, key) in fields">
-        <dl
-          v-if="metadataObj[obj.label] && metadataObj[obj.label].length > 0"
-          :key="key"
-          class="row"
-        >
-          <dt class="col-sm-3 text-muted">
-            <b>{{ $t(obj.label) }}</b>
-          </dt>
-          <dd
-            class="col-sm-9"
-            :class="obj.label === 'Phone/Word' ? 'phone' : ''"
-          >
-            <template v-if="obj.text">
-              <span v-for="(v, key2) in metadataObj[obj.label]" :key="key2">
-                {{ v }}
-              </span>
-            </template>
-            <template v-else>
-              <nuxt-link
-                v-for="(v, key2) in metadataObj[obj.label]"
-                :key="key2"
-                :to="
-                  localePath({ name: 'search', query: getQuery(obj.label, v) })
+            <tr>
+              <td width="30%">{{ $t('label') }}</td>
+              <td style="overflow-wrap: break-word" class="py-5">
+                {{ id }}
+              </td>
+            </tr>
+
+            <template v-for="(obj, key) in fields">
+              <tr
+                v-if="
+                  metadataObj[obj.label] && metadataObj[obj.label].length > 0
                 "
+                :key="key"
               >
-                {{ v }}
-              </nuxt-link>
+                <td width="30%">{{ $t(obj.label) }}</td>
+                <td
+                  style="overflow-wrap: break-word"
+                  class="py-5"
+                  :class="obj.label === 'Phone/Word' ? 'phone' : ''"
+                >
+                  <template v-if="obj.text">
+                    <span
+                      v-for="(v, key2) in metadataObj[obj.label]"
+                      :key="key2"
+                    >
+                      {{ v }}
+                    </span>
+                  </template>
+                  <template v-else>
+                    <nuxt-link
+                      v-for="(v, key2) in metadataObj[obj.label]"
+                      :key="key2"
+                      :to="
+                        localePath({
+                          name: 'search',
+                          query: getQuery(obj.label, v),
+                        })
+                      "
+                    >
+                      {{
+                        ['Item Type', 'Sub Type', 'Unit'].includes(obj.label)
+                          ? $t(v)
+                          : v
+                      }}
+                    </nuxt-link>
+                  </template>
+                </td>
+              </tr>
             </template>
-          </dd>
-        </dl>
-      </template>
+          </tbody>
+        </template>
+      </v-simple-table>
 
-      <dl class="row">
-        <dt class="col-sm-3 text-muted">
-          <b>{{ $t('license') }}</b>
-        </dt>
-        <dd class="col-sm-9">
+      <v-sheet class="text-center mt-10">
+        <small>
+          <h3 class="mb-5">{{ $t('license') }}</h3>
+
           <template v-if="$i18n.locale == 'ja'">
             <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"
               ><img
@@ -185,8 +164,8 @@
               >Creative Commons Attribution 4.0 International License</a
             >.
           </template>
-        </dd>
-      </dl>
+        </small>
+      </v-sheet>
     </v-container>
   </div>
 </template>
@@ -210,13 +189,10 @@ export default {
         const members = selection.members
         for (let j = 0; j < members.length; j++) {
           const member = members[j]
-          const metadata = member.metadata
-          for (let k = 0; k < metadata.length; k++) {
-            const m = metadata[k]
-            if (m.label === 'm_sort' && m.value === id) {
-              member.manifest = manifest
-              return member
-            }
+
+          if (member.label === id) {
+            member.manifest = manifest
+            return member
           }
         }
       }
@@ -303,13 +279,7 @@ export default {
       return this.$route.params.id
     },
     title() {
-      const metadataObj = this.metadataObj
-      return (
-        metadataObj['Hieratic No Mod'][0] +
-        '(' +
-        metadataObj['Hieroglyph No Mod'][0] +
-        ')'
-      )
+      return this.id
     },
     metadataObj() {
       const metadata = this.metadata

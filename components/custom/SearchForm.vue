@@ -1,12 +1,15 @@
 <template>
-  <v-container class="pt-5">
+  <v-container fluid class="pt-5">
     <v-card class="my-5" flat outlined>
       <v-card-text>
         <v-row>
+          <v-col cols="12" lg="1"> </v-col>
           <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="fields.itemType.value"
-              :items="fields.itemType.arr"
+              :items="convert2items(fields.itemType.arr)"
+              item-text="text"
+              item-value="value"
               :label="$t(fields.itemType.label)"
               multiple
             ></v-select>
@@ -15,7 +18,9 @@
           <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="fields.subType.value"
-              :items="fields.subType.arr"
+              :items="convert2items(fields.subType.arr)"
+              item-text="text"
+              item-value="value"
               :label="$t(fields.subType.label)"
               multiple
             ></v-select>
@@ -24,7 +29,9 @@
           <v-col cols="12" sm="4" lg="2">
             <v-select
               v-model="fields.unit.value"
-              :items="fields.unit.arr"
+              :items="convert2items(fields.unit.arr)"
+              item-text="text"
+              item-value="value"
               :label="$t(fields.unit.label)"
               multiple
             ></v-select>
@@ -48,6 +55,7 @@
         </v-row>
 
         <v-row>
+          <v-col cols="12" lg="1"> </v-col>
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="fields.category.value"
@@ -90,6 +98,7 @@
         </v-row>
 
         <v-row>
+          <v-col cols="12" lg="1"> </v-col>
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
               v-model="fields.page.value"
@@ -429,6 +438,18 @@ export default class SearchForm extends Vue {
       () => {},
       () => {}
     )
+  }
+
+  convert2items(arr: any[]) {
+    const items = []
+    for (let i = 0; i < arr.length; i++) {
+      const value = arr[i]
+      items.push({
+        value,
+        text: this.$t(value),
+      })
+    }
+    return items
   }
 }
 </script>

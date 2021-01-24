@@ -1,22 +1,25 @@
 <template>
   <div>
-    <v-container class="py-5">
-      <h2>
+    <v-container class="my-5">
+      <h1>
         <template v-if="$i18n.locale == 'ja'">
           {{ id }}リソースが持つプロパティ
         </template>
         <template v-else> Properties in "{{ id }}" resources </template>
-      </h2>
+      </h1>
 
       <v-data-table
         :headers="headers"
         :items="desserts"
         :items-per-page="-1"
-        class="mt-5"
+        class="my-10"
       >
         <!-- eslint-disable-next-line vue/valid-v-slot -->
         <template #item.path="{ item }">
-          <code>{{ getUri(item.path) }}</code>
+          <code
+            style="background-color: #fbe5e1; color: #c0341d; padding: 0 0.4rem"
+            >{{ getUri(item.path) }}</code
+          >
         </template>
 
         <!-- eslint-disable-next-line vue/valid-v-slot -->
@@ -41,7 +44,10 @@
 
         <!-- eslint-disable-next-line vue/valid-v-slot -->
         <template #item.datatype="{ item }">
-          <code>{{ getUri(item.datatype) }}</code>
+          <code
+            style="background-color: #fbe5e1; color: #c0341d; padding: 0 0.4rem"
+            >{{ getUri(item.datatype) }}</code
+          >
         </template>
 
         <!-- eslint-disable-next-line vue/valid-v-slot -->

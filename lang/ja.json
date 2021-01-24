@@ -384,5 +384,15 @@
   "Numeral": "数詞",
   "Sub Type": "サブタイプ",
   "Item Label": "アイテム番号",
-  "Unit" : "単位"
+  "Unit" : "単位",
+  "Main" : "基本字",
+  "Ligature" : "連字",
+  "Number" : "数字類",
+  "Date" : "日付",
+  "Fraction" : "分数",
+  "Area" : "面積",
+  "Length" : "尺",
+  "Volume" : "体積",
+  "Single" : "単字",
+  "Continuous" : "字列"
 }

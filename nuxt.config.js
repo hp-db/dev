@@ -76,6 +76,7 @@ const basePath = baseUrl + baseDir
 // meta
 const lang = 'en'
 const siteName = 'Hieratische Paläographie DB'
+env.siteName = siteName
 const siteDesc =
   "This is a retrieval system for hieratic scripts; it uses IIIF format images (owned by the Asian Research Library of the University of Tokyo) of Georg Möller's Hieratische Paläographie (1909–36)."
 const siteKeywords = 'IIIF, Hieratic, Hieroglyph'

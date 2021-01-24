@@ -1,24 +1,21 @@
 <template>
   <div>
-    <v-sheet color="grey lighten-3">
-      <v-container class="py-4">
-        <h1>
-          <template v-if="$i18n.locale === 'ja'">
-            {{ label.startsWith('_') ? $t(title) : title }}を一覧する
-          </template>
-          <template v-else>
-            {{ $t('browse_by') }}
-            {{ label.startsWith('_') ? $t(title) : title }}
-          </template>
-        </h1>
-      </v-container>
-    </v-sheet>
-
-    <v-container>
+    <v-container class="my-5">
+      <h1 class="mb-5">
+        <template v-if="$i18n.locale === 'ja'">
+          {{ label.startsWith('_') ? $t(title) : title }}を一覧する
+        </template>
+        <template v-else>
+          {{ $t('browse_by') }}
+          {{ label.startsWith('_') ? $t(title) : title }}
+        </template>
+      </h1>
       <template v-for="(obj, index) in facetOptions">
         <v-btn
           v-if="index !== 'Phone/Word Mod'"
           :key="index"
+          color="primary"
+          text
           class="my-1 mr-4"
           :to="
             localePath({
@@ -59,7 +56,11 @@
               })
             "
           >
-            {{ obj.key }}
+            {{
+              ['Item Type', 'Sub Type', 'Unit'].includes(label)
+                ? $t(obj.key)
+                : obj.key
+            }}
           </nuxt-link>
           ({{ Number(obj.doc_count).toLocaleString() }})
         </v-col>

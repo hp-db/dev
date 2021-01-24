@@ -47,14 +47,20 @@
       </v-dialog>
     </div>
 
-    <v-card v-for="(obj, index) in results" :key="index" class="mb-5">
+    <v-card
+      v-for="(obj, index) in results"
+      :key="index"
+      flat
+      outlined
+      class="mb-5"
+    >
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="4">
             <span>
               <b>{{ $t('label') }}</b>
               &nbsp;
-              {{ obj._source._label[0] }}
+              {{ obj._id }}
             </span>
 
             <br />
@@ -123,7 +129,7 @@
                       },
                     })
                   "
-                  >{{ value }}</nuxt-link
+                  >{{ $t(value) }}</nuxt-link
                 >
                 <span
                   v-show="index2 != obj._source['Item Type'].length - 1"
@@ -135,7 +141,7 @@
 
             &nbsp;
 
-            <span>
+            <span v-if="obj._source['Unit'] && obj._source['Unit'].length > 0">
               <b>{{ $t('Unit') }}</b>
               &nbsp;
               <template v-for="(value, index2) in obj._source['Unit']">
@@ -149,7 +155,7 @@
                       },
                     })
                   "
-                  >{{ value }}</nuxt-link
+                  >{{ $t(value) }}</nuxt-link
                 >
                 <span
                   v-show="index2 != obj._source['Unit'].length - 1"
@@ -161,7 +167,34 @@
 
             <br />
 
-            <span>
+            <div
+              v-if="obj._source['Numeral'] && obj._source['Numeral'].length > 0"
+            >
+              <b>{{ $t('Numeral') }}</b>
+
+              &nbsp;
+              <template v-for="(value, index2) in obj._source['Numeral']">
+                <nuxt-link
+                  :key="index2"
+                  :to="
+                    localePath({
+                      name: 'search',
+                      query: {
+                        'fc-Numeral': value,
+                      },
+                    })
+                  "
+                  >{{ value }}</nuxt-link
+                >
+                <span
+                  v-show="index2 != obj._source['Numeral'].length - 1"
+                  :key="'numeral_' + index2"
+                  >,&nbsp;</span
+                >
+              </template>
+            </div>
+
+            <div v-if="obj._source['Phone/Word'].length > 0">
               <b>{{ $t('Phone/Word') }}</b
               >&nbsp;
               <template v-for="(value, index2) in obj._source['Phone/Word']">
@@ -184,12 +217,11 @@
                   >
                   <span v-if="value.split(')').length > 1">)</span>
                   <span v-show="index2 != obj._source['Phone/Word'].length - 1"
-                    >&nbsp;,&nbsp;</span
+                    >,&nbsp;</span
                   >
                 </span>
               </template>
-            </span>
-            <br />
+            </div>
 
             <span>
               <b>{{ $t('Vol') }}</b>

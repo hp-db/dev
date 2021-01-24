@@ -16,7 +16,7 @@ df = json.load(json_open)
 
 selections = df["selections"]
 
-print(len(selections))
+# print(len(selections))
 
 index = []
 
@@ -26,7 +26,7 @@ for selection in selections:
     manifest = selection["within"]["@id"]
 
     for member in members:
-        print(member)
+        # print(member)
 
         metadataObj = {}
 
@@ -47,9 +47,9 @@ for selection in selections:
 
                 metadataObj[label].append(value) 
 
-        id = metadataObj["m_sort"][0]
+        id = member["label"].replace("[", "").replace("]", "")
 
-        print(metadataObj)
+        # print(metadataObj)
 
         metadataObj["_label"] = metadataObj["Hieratic No"][0]+"("+metadataObj["Hieroglyph No"][0]+")"
 
