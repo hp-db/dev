@@ -222,7 +222,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    '@nuxtjs/content',
+
     '@nuxtjs/sitemap',
     [
       '@nuxtjs/google-analytics',
@@ -233,6 +233,7 @@ export default {
     'nuxt-i18n',
     // Simple usage
     // '@nuxtjs/amp',
+    '@nuxtjs/content',
   ],
 
   sitemap: {
@@ -273,6 +274,9 @@ export default {
     langDir: 'lang/',
     // strategy: 'no_prefix'
   },
+
+  // Content module configuration (https://go.nuxtjs.dev/config-content)
+  content: {},
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
