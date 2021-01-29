@@ -232,4 +232,8 @@ export default class search extends Vue {
 tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
 }
+.nuxt-content h2 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
 </style>

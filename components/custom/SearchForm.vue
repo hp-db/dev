@@ -39,8 +39,8 @@
 
           <v-col cols="12" sm="4" lg="2">
             <v-text-field
-              v-model="fields.item.value"
-              :label="$t(fields.item.label)"
+              v-model="item"
+              :label="$t('Item Label')"
               @keyup.enter="search"
             ></v-text-field>
           </v-col>
@@ -158,10 +158,7 @@ export default class SearchForm extends Vue {
       value: [],
     },
 
-    item: {
-      label: 'Item Label',
-      value: [],
-    },
+    
     category: {
       label: 'Category Class',
       value: '',
@@ -224,16 +221,22 @@ export default class SearchForm extends Vue {
     }
     */
 
-    if (advanced['fc-Hieratic No Mod']) {
-      this.hieraticNo = advanced['fc-Hieratic No Mod']
+    if (advanced['fc-Hieratic No Search']) {
+      this.hieraticNo = advanced['fc-Hieratic No Search']
     } else {
       this.hieraticNo = ''
     }
 
-    if (advanced['fc-Hieroglyph No Mod']) {
-      this.hieroglyphNo = advanced['fc-Hieroglyph No Mod']
+    if (advanced['fc-Hieroglyph No Search']) {
+      this.hieroglyphNo = advanced['fc-Hieroglyph No Search']
     } else {
       this.hieroglyphNo = ''
+    }
+
+    if (advanced['fc-Item Label Search']) {
+      this.item = advanced['fc-Item Label Search']
+    } else {
+      this.item = ''
     }
 
     if (advanced['fc-Phone/Word']) {
@@ -247,50 +250,11 @@ export default class SearchForm extends Vue {
     } else {
       this.note = ''
     }
-
-    /*
-    if (advanced['fc-Page']) {
-      this.page = advanced['fc-Page']
-    } else {
-      this.page = ''
-    }
-
-    if (advanced['fc-Order']) {
-      this.order = advanced['fc-Order']
-    } else {
-      this.order = ''
-    }
-
-    if (advanced['fc-Category']) {
-      const values = advanced['fc-Category']
-      this.category = Array.isArray(values) ? values : [values]
-    } else {
-      this.category = []
-    }
-
-    if (advanced['fc-Compound']) {
-      const values = advanced['fc-Compound']
-      this.compound = Array.isArray(values) ? values : [values]
-    } else {
-      this.compound = []
-    }
-
-    if (advanced['fc-Class']) {
-      this.categoryClass = advanced['fc-Class']
-    } else {
-      this.categoryClass = ''
-    }
-    */
   }
 
-  // vol: any = []
-
-  // itemType: any = []
-  // subType: any = []
-
-  // unit: any = []
-
   hieraticNo: any = ''
+
+  item: any = ""
 
   hieroglyphNo: any = ''
 
@@ -298,30 +262,12 @@ export default class SearchForm extends Vue {
 
   note: any = ''
 
-  // page: any = ''
-
-  // order: any = ''
-
-  // category: any = []
-  // compound: any = []
-  // categoryClass: any = ''
-
   get advanced() {
     return this.$store.state.advanced
   }
 
   search() {
     const query: any = {}
-
-    // --------
-
-    /*
-    const vol = this.vol
-
-    if (vol.length !== 0) {
-      query['fc-Vol'] = vol
-    }
-    */
 
     // --------
 
@@ -334,17 +280,31 @@ export default class SearchForm extends Vue {
     hieraticNo = hieraticNo.replace('bis', '')
 
     if (hieraticNo !== '') {
-      query['fc-Hieratic No Mod'] = hieraticNo
+      query['fc-Hieratic No Search'] = hieraticNo
     }
 
     // --------
+
+    let item = this.item
+
+    if (['A', 'B', 'C', 'a', 'b', 'c'].includes(item.slice(-1))) {
+      item = item.slice(0, item.length - 1)
+    }
+
+    item = item.replace('bis', '')
+
+    if (item !== '') {
+      query['fc-Item Label Search'] = item
+    }
+
+    // ----------
 
     let hieroglyphNo = this.hieroglyphNo
 
     hieroglyphNo = hieroglyphNo.split('*').join('')
 
     if (hieroglyphNo !== '') {
-      query['fc-Hieroglyph No Mod'] = hieroglyphNo
+      query['fc-Hieroglyph No Search'] = hieroglyphNo
     }
 
     // --------

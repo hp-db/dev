@@ -384,6 +384,12 @@
   "Numeral": "数詞",
   "Sub Type": "サブタイプ",
   "Item Label": "アイテム番号",
+  "Item Label Mod": "アイテム番号",
+  "Item Label Search": "アイテム番号",
+  "Hieratic No Mod": "ヒエラティック番号",
+  "Hieratic No Search": "ヒエラティック番号",
+  "Hieroglyph No Mod": "ヒエログリフ番号",
+  "Hieroglyph No Search": "ヒエログリフ番号",
   "Unit" : "単位",
   "Main" : "基本字",
   "Ligature" : "連字",
@@ -394,5 +400,6 @@
   "Length" : "尺",
   "Volume" : "体積",
   "Single" : "単字",
-  "Continuous" : "字列"
+  "Continuous" : "字列",
+  "view_detail" : "詳細をみる"
 }

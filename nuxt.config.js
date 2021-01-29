@@ -16,11 +16,11 @@ env.facetOptions = {
     label: 'Unit', // this.$t('Compound'),
     open: true,
   },
-  'Item Label': {
+  'Item Label Mod': {
     label: 'Item Label', // this.$t('Hieratic No'),
     open: true,
   },
-  'Hieratic No': {
+  'Hieratic No Mod': {
     label: 'Hieratic No', // this.$t('Hieratic No'),
     open: true,
   },
@@ -28,7 +28,7 @@ env.facetOptions = {
     label: 'Category Class', // this.$t('Category'),
     open: true,
   },
-  'Hieroglyph No': {
+  'Hieroglyph No Mod': {
     label: 'Hieroglyph No', // this.$t('Hieroglyph No'),
     open: true,
   },
@@ -222,6 +222,7 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    '@nuxtjs/content',
     '@nuxtjs/sitemap',
     [
       '@nuxtjs/google-analytics',

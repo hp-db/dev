@@ -9,7 +9,7 @@ import argparse
 import json
 import urllib
 import glob
-
+import unicodedata
 # 正規表現操作のライブラリ
 import re
 
@@ -146,6 +146,45 @@ df = pd.read_excel(path, sheet_name=0, header=None, index_col=None, engine="open
 r_count = len(df.index)
 c_count = len(df.columns)
 
+def handleAs(data):
+  targets=["*3", "*2"]
+  for target in targets:
+    if target in data:
+      data = data.replace(target, target.replace("*", "×"))
+
+  return data
+
+def handleSplit(data):
+
+  targets = ["(", ")", "=", "×3", "×2", "/", ","]
+
+  for target in targets:
+    data = data.replace(target, "+")
+
+  data = data.split("+")
+
+  arr = []
+
+  for i in data:
+    if i not in arr and i != "":
+      arr.append(i.strip())
+
+  return arr
+
+def toSearch(data):
+  arr = []
+  fields = ["*", "-", "?", "bis", "ter", "quat"]
+  for e in data:
+    for field in fields:
+      e = e.replace(field, "")
+
+      if e[-1:] in ["A", "B", "C", "D", "E", "F", "a", "b", "c"]:
+        e = e[:-1]
+
+      if e not in arr and e != "":
+        arr.append(e)
+
+  return arr
 
 for j in range(1, r_count):
 
@@ -153,33 +192,40 @@ for j in range(1, r_count):
 
     sort = str(df.iloc[j,1])
 
+    if sort != "107004" and False:
+      continue
+
     m_sort = str(df.iloc[j,2]).zfill(8)
     h_sort = str(df.iloc[j,4]).zfill(8)
 
     vol = str(df.iloc[j,12]) # *
-    m_no = str(df.iloc[j,16]).replace("=", "+").split("+") # 要検討
-    h_no = str(df.iloc[j,19]).replace("=", "+").split("+") # 要検討
+
+    m_no_str = unicodedata.normalize("NFKC", str(df.iloc[j,16]))
+
+    m_no_str = handleAs(m_no_str)
+
+    h_no_str = unicodedata.normalize("NFKC", str(df.iloc[j,19]))
+
+    h_no_str = handleAs(h_no_str)
+
+    item_str = unicodedata.normalize("NFKC", str(df.iloc[j,15]))
+
+    # m_no = m_no_str.replace("=", "+").split("+") # 要検討
+    # h_no = h_no_str.replace("=", "+").split("+") # 要検討
+
+    m_no = handleSplit(m_no_str)
+    h_no = handleSplit(h_no_str)
+    item_no = handleSplit(item_str)
 
     page = str(df.iloc[j,13])
 
     order = str(df.iloc[j,14])
 
-    m_no2 = []
-    for m in m_no:
-      ms = m.replace("*", "").replace("-", "").replace("?", "").replace("/", "+").split("+")
-      for m2 in ms:
-        if m2[-1:] in ["A", "B", "C", "a", "b", "c"]:
-          m2 = m2[:-1]
-        m2 = m2.replace("bis", "")
-        m_no2.append(m2)
+    m_no2 = toSearch(m_no)
 
-    h_no2 = []
-    for h in h_no:
-      hs = h.replace("*", "").replace("-", "").replace("?", "").replace("/", "+").split("+")
-      for h2 in hs:
-        if h2[-1:] in ["A", "B", "C", "a", "b", "c"]:
-          h2 = h2[:-1]
-        h_no2.append(h2)
+    h_no2 = toSearch(h_no)
+
+    item_no2 = toSearch(item_no)
 
     ph = df.iloc[j,20]
     if pd.isnull(ph) or ph == "":
@@ -198,7 +244,7 @@ for j in range(1, r_count):
     categories = df.iloc[j,18].split(",")
     numeral = [] if pd.isnull(df.iloc[j,17]) else str(df.iloc[j,17]).split(",")
 
-    item_label = str(df.iloc[j,15]).split("+") # 要検討
+    
 
     unit = df.iloc[j, 10]
 
@@ -231,10 +277,15 @@ for j in range(1, r_count):
 
     manifest_members[manifest][sort] = {
         "vol": vol,
+        "m_no_str" : m_no_str,
+        "h_no_str" : h_no_str,
+        "item_no_str" : item_str,
         "m_no": m_no,
         "h_no": h_no,
+        "item_no" : item_no,
         "m_no2": m_no2,
         "h_no2": h_no2,
+        "item_no2" : item_no2,
         "m_sort": m_sort,
         "h_sort": h_sort,
         "ph": ph,
@@ -248,7 +299,7 @@ for j in range(1, r_count):
         "stype" : stype,
         "categories": categories,
         "numeral": numeral,
-        "item_label" : item_label,
+        
         "unit" : unit
     }
 
@@ -260,7 +311,7 @@ pos = 1
 
 for manifest in manifest_members:
 
-    print(manifest)
+    # print(manifest)
 
     members = []
 
@@ -268,11 +319,31 @@ for manifest in manifest_members:
 
     for key in sorted(manifest_members[manifest]):
 
-        print(key)
+        # print(key)
 
         obj = manifest_members[manifest][key]
 
         vol = obj["vol"]
+
+        '''
+        {
+          "label": "Hieratic No",
+          "value": obj["m_no"]
+        },
+        {
+          "label": "Hieratic No Mod",
+          "value": obj["m_no2"]
+        },
+      
+          {
+            "label": "Hieroglyph No",
+            "value": obj["h_no"]
+          },
+          {
+            "label": "Hieroglyph No Mod",
+            "value": obj["h_no2"]
+          },
+        '''
 
         metadata = [
             {
@@ -281,20 +352,43 @@ for manifest in manifest_members:
             },
             {
               "label": "Hieratic No",
-              "value": obj["m_no"]
-            },
-            {
-              "label": "Hieratic No Mod",
-              "value": obj["m_no2"]
+              "value": obj["m_no_str"]
             },
             {
               "label": "Hieroglyph No",
-              "value": obj["h_no"]
+              "value": obj["h_no_str"]
+            },
+            {
+              "label": "Item Label",
+              "value": obj["item_no_str"]
+            },
+
+            {
+              "label": "Hieratic No Mod",
+              "value": obj["m_no"]
             },
             {
               "label": "Hieroglyph No Mod",
+              "value": obj["h_no"]
+            },
+             {
+              "label": "Item Label Mod",
+              "value": obj["item_no"]
+            },
+
+            {
+              "label": "Hieratic No Search",
+              "value": obj["m_no2"]
+            },            
+            {
+              "label": "Hieroglyph No Search",
               "value": obj["h_no2"]
             },
+            {
+              "label": "Item Label Search",
+              "value": obj["item_no2"]
+            },
+           
             {
               "label": "Phone/Word",
               "value": obj["ph"]
@@ -350,12 +444,6 @@ for manifest in manifest_members:
           metadata.append({
             "label": "Unit",
             "value": obj["unit"]
-          })
-
-        if len(obj["item_label"]) > 0:
-          metadata.append({
-            "label": "Item Label",
-            "value": obj["item_label"]
           })
 
         member = {

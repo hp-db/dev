@@ -57,10 +57,14 @@
       <v-card-text>
         <v-row>
           <v-col cols="12" sm="4">
+            
             <span>
-              <b>{{ $t('label') }}</b>
+              <b>{{ $t('Item Label') }}</b>
               &nbsp;
-              {{ obj._id }}
+               <Split
+                :data="obj._source['Item Label']"
+                field="Item Label Mod"
+              />
             </span>
 
             <br />
@@ -68,50 +72,20 @@
             <span>
               <b>{{ $t('Hieratic No') }}</b>
               &nbsp;
-              <template v-for="(value, index2) in obj._source['Hieratic No']">
-                <nuxt-link
-                  :key="index2"
-                  :to="
-                    localePath({
-                      name: 'search',
-                      query: {
-                        'fc-Hieratic No': value,
-                      },
-                    })
-                  "
-                  >{{ value }}</nuxt-link
-                >
-                <span
-                  v-show="index2 != obj._source['Hieratic No'].length - 1"
-                  :key="'mno_' + index2"
-                  >&nbsp;+&nbsp;</span
-                >
-              </template>
+              <Split
+                :data="obj._source['Hieratic No']"
+                field="Hieratic No Mod"
+              />
             </span>
 
             <br />
             <span>
               <b>{{ $t('Hieroglyph No') }}</b>
               &nbsp;
-              <template v-for="(value, index2) in obj._source['Hieroglyph No']">
-                <nuxt-link
-                  :key="index2"
-                  :to="
-                    localePath({
-                      name: 'search',
-                      query: {
-                        'fc-Hieroglyph No': value,
-                      },
-                    })
-                  "
-                  >{{ value }}</nuxt-link
-                >
-                <span
-                  v-show="index2 != obj._source['Hieroglyph No'].length - 1"
-                  :key="'hno_' + index2"
-                  >&nbsp;+&nbsp;</span
-                >
-              </template>
+              <Split
+                :data="obj._source['Hieroglyph No']"
+                field="Hieroglyph No Mod"
+              />
             </span>
             <br />
 
@@ -247,6 +221,18 @@
             ></v-switch>
           </v-col>
           <v-col cols="12" sm="8">
+            <div class="mb-5" v-if="false">
+              <nuxt-link
+                :to="
+                  localePath({
+                    name: 'item-id',
+                    params: { id: obj._id },
+                  })
+                "
+              >
+                {{ $t("view_detail") }}
+              </nuxt-link>
+            </div>
             <nuxt-link
               :to="
                 localePath({
