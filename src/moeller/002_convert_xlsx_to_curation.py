@@ -228,18 +228,15 @@ for j in range(1, r_count):
     item_no2 = toSearch(item_no)
 
     ph = df.iloc[j,20]
-    if pd.isnull(ph) or ph == "":
-        ph = ""
+    if pd.isnull(ph):
+      ph = ""
 
-    ph = ph.split(", ")
-
-    ph2 = []
-    for e in ph:
-      ph2.append(e.replace("(", "").replace(")", ""))
-
-    note = df.iloc[j,21]
+    ph = unicodedata.normalize("NFKC", ph)
+    ph2 = handleSplit(ph)
 
     ###
+
+    note = df.iloc[j,21]
 
     categories = df.iloc[j,18].split(",")
     numeral = [] if pd.isnull(df.iloc[j,17]) else str(df.iloc[j,17]).split(",")

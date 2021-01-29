@@ -11,8 +11,8 @@
         </template>
       </h1>
       <template v-for="(obj, index) in facetOptions">
+        <!-- v-if="index !== 'Phone/Word Mod'" -->
         <v-btn
-          v-if="index !== 'Phone/Word Mod'"
           :key="index"
           color="primary"
           text
@@ -20,7 +20,7 @@
           :to="
             localePath({
               name: 'category-id',
-              params: { id: index },
+              params: { id: index.replace('/', '-') },
             })
           "
         >
@@ -55,6 +55,7 @@
                 query: getParams('fc-' + label, obj.key),
               })
             "
+            :class="label.includes('Phone/Word') ? 'phone' : ''"
           >
             {{
               ['Item Type', 'Sub Type', 'Unit'].includes(label)
@@ -111,7 +112,7 @@ export default class PageCategory extends Vue {
       store.commit('setFacetOptions', this.facetOptions)
     }
 
-    const label: any = this.$route.params.id
+    const label: any = this.$route.params.id.replace('-', '/')
     this.label = label // this.facetOptions[label].label
 
     // 検索

@@ -104,8 +104,13 @@
                   class="py-5"
                   :class="obj.label === 'Phone/Word' ? 'phone' : ''"
                 >
-                  <template v-if="['Hieratic No', 'Hieroglyph No'].includes(obj.label)">
-                    <Split :data="metadataObj[obj.label]" :field="`${obj.label} Mod`"></Split>
+                  <template
+                    v-if="['Hieratic No', 'Hieroglyph No'].includes(obj.label)"
+                  >
+                    <Split
+                      :data="metadataObj[obj.label]"
+                      :field="`${obj.label} Mod`"
+                    ></Split>
                   </template>
                   <template v-else-if="obj.text">
                     <span

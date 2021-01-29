@@ -1,20 +1,28 @@
 [
   {
-    "@id": "https://w3id.org/hpdb/api/term/hieraticNo/1",
+    "@id": "https://w3id.org/hpdb/api/term/hieroglyphNo/A26",
     "@type": [
-      "https://w3id.org/hpdb/api/classes/HieraticNo"
+      "https://w3id.org/hpdb/api/classes/HieroglyphNo"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "A26"
+      }
+    ],
+    "https://w3id.org/hpdb/api/properties/categoryClass": [
+      {
+        "@id": "https://w3id.org/hpdb/api/term/categoryClass/A"
+      }
+    ]
+  },
+  {
+    "@id": "https://w3id.org/hpdb/api/term/itemNo/1",
+    "@type": [
+      "https://w3id.org/hpdb/api/classes/ItemNo"
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
         "@value": "1"
-      }
-    ],
-    "https://w3id.org/hpdb/api/properties/phonetic": [
-      {
-        "@value": "nis"
-      },
-      {
-        "@value": "aA"
       }
     ]
   },
@@ -22,11 +30,6 @@
     "@id": "https://w3id.org/hpdb/api/items/201001",
     "@type": [
       "https://w3id.org/hpdb/api/classes/Item"
-    ],
-    "http://purl.org/dc/terms/identifer": [
-      {
-        "@value": "201001"
-      }
     ],
     "http://schema.org/image": [
       {
@@ -50,7 +53,7 @@
     ],
     "http://www.w3.org/2000/01/rdf-schema#label": [
       {
-        "@value": "1(A26)"
+        "@value": "201001"
       }
     ],
     "https://w3id.org/hpdb/api/properties/hieraticNo": [
@@ -61,6 +64,11 @@
     "https://w3id.org/hpdb/api/properties/hieroglyphNo": [
       {
         "@id": "https://w3id.org/hpdb/api/term/hieroglyphNo/A26"
+      }
+    ],
+    "https://w3id.org/hpdb/api/properties/itemNo": [
+      {
+        "@id": "https://w3id.org/hpdb/api/term/itemNo/1"
       }
     ],
     "https://w3id.org/hpdb/api/properties/itemType": [
@@ -90,6 +98,25 @@
     ]
   },
   {
+    "@id": "https://w3id.org/hpdb/api/term/hieraticNo/1",
+    "@type": [
+      "https://w3id.org/hpdb/api/classes/HieraticNo"
+    ],
+    "http://www.w3.org/2000/01/rdf-schema#label": [
+      {
+        "@value": "1"
+      }
+    ],
+    "https://w3id.org/hpdb/api/properties/phonetic": [
+      {
+        "@value": "aA"
+      },
+      {
+        "@value": "nis"
+      }
+    ]
+  },
+  {
     "@id": "https://w3id.org/hpdb/api/term/categoryClass/A",
     "@type": [
       "https://w3id.org/hpdb/api/classes/Category"
@@ -107,22 +134,6 @@
     "https://w3id.org/hpdb/api/properties/notes": [
       {
         "@value": "56 signs in Gardiner (1957:242–247), with A59 \"man threatening with stick\" inserted after A25 \"man striking with left hand hanging behind back\", and two variants A14* \"blood interpreted as ax\" of A14 \"man with blood streaming from his head\" and A17* \"child sitting with arms hanging down\" of A17 \"child sitting with hand to mouth\"."
-      }
-    ]
-  },
-  {
-    "@id": "https://w3id.org/hpdb/api/term/hieroglyphNo/A26",
-    "@type": [
-      "https://w3id.org/hpdb/api/classes/HieroglyphNo"
-    ],
-    "http://www.w3.org/2000/01/rdf-schema#label": [
-      {
-        "@value": "A26"
-      }
-    ],
-    "https://w3id.org/hpdb/api/properties/categoryClass": [
-      {
-        "@id": "https://w3id.org/hpdb/api/term/categoryClass/A"
       }
     ]
   }

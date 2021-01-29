@@ -37,7 +37,7 @@ for selection in selections:
             value = m["value"]
             metadataObj[label] = value
 
-            if "Mod" not in label and value != "" and "_sort" not in label:
+            if "Search" not in label and value != "" and "_sort" not in label:
                 metadata2.append({
                     "label" : label,
                     "value" : value
