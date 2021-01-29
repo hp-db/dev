@@ -28950,10 +28950,12 @@
             "44"
         ],
         "Phone/Word": [
-            "in"
+            "in",
+            "ini"
         ],
         "Phone/Word Mod": [
-            "in"
+            "in",
+            "ini"
         ],
         "Unit": [
             "Single"
@@ -78012,10 +78014,12 @@
             "47"
         ],
         "Phone/Word": [
-            "in"
+            "in",
+            "ini"
         ],
         "Phone/Word Mod": [
-            "in"
+            "in",
+            "ini"
         ],
         "Unit": [
             "Single"
@@ -90335,7 +90339,7 @@
     {
         "Category Class": [
             "N",
-            "D8"
+            "D"
         ],
         "Hieratic No": [
             "335+124"
@@ -122582,10 +122586,12 @@
             "47"
         ],
         "Phone/Word": [
-            "in"
+            "in",
+            "ini"
         ],
         "Phone/Word Mod": [
-            "in"
+            "in",
+            "ini"
         ],
         "Unit": [
             "Single"
