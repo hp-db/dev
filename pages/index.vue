@@ -26,8 +26,7 @@
 <script>
 export default {
   async asyncData({ $content, app }) {
-    const document = await $content(app.i18n.locale, 'index').fetch()
-    console.log({ document })
+    const document = await $content(`${app.i18n.locale}/`, 'index').fetch()
     return { document }
   },
   data() {
