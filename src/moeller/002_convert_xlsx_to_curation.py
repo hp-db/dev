@@ -16,7 +16,7 @@ import re
 canvas_image_map = {}
 curation_data = {}
 
-EXCEL_PATH = "data/Moller_All-Data_20210123.xlsx"
+EXCEL_PATH = "data/Moller_All-Data_20210129.xlsx"
 
 curation_uri = "https://moeller.jinsha.tsukuba.ac.jp/data/curation.json"
 
