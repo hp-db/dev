@@ -132,7 +132,7 @@
             "
             style="color: inherit; text-decoration: inherit"
           >
-            Hieratische Paläographie DB
+            {{ $t(siteName) }}
           </nuxt-link>
         </v-toolbar-title>
 
@@ -212,6 +212,7 @@ import FullTextSearch from '~/components/search/FullTextSearch.vue'
 export default class search extends Vue {
   drawer: boolean = false
   baseUrl: string = process.env.BASE_URL || ''
+  siteName: any = process.env.siteName
 
   /*
   isMobile() {
